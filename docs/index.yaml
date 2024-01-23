@@ -1,0 +1,135 @@
+openapi: 3.0.0
+
+servers:
+  - url: http://localhost:3000
+    description: local dev server
+
+info:
+  title: hahow hero API
+  description: hahow hero api document
+  version: 1.0.0
+
+tags:
+  - name: Heroes
+    description: APIs for Heroes
+
+paths:
+  /heroes:
+    get:
+      description: return a list of heroes
+      summary: return a list of heroes
+      operationId: getHeroes
+      tags:
+        - Heroes
+
+      parameters:
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/password'
+        - $ref: '#/components/parameters/content-type'
+
+      responses:
+        '200':
+          description: 'ok'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Hero'
+
+  /heroes/{heroID}:
+    get:
+      description: return a hero
+      summary: return a hero
+      operationId: getHero
+      tags:
+        - Heroes
+
+      parameters:
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/password'
+        - $ref: '#/components/parameters/content-type'
+        - in: path
+          name: heroID
+          schema:
+            type: integer
+            example: 1
+          required: true
+          description: id of the hero
+
+      responses:
+        '200':
+          description: 'ok'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Hero'
+        '404':
+          description: Not found
+
+components:
+  schemas:
+    Hero:
+      type: object
+      required:
+        - id
+        - name
+        - image
+      properties:
+        id:
+          type: integer
+          example: 1
+          readOnly: true
+        name:
+          type: string
+          example: Daredevil
+          readOnly: true
+        image:
+          type: string
+          format: uri
+          example: http://i.annihil.us/u/prod/marvel/i/mg/6/90/537ba6d49472b/standard_xlarge.jpg
+          readOnly: true
+        profile:
+          description: property that will only be shown if authenticated
+          type: object
+          readOnly: true
+          properties:
+            str:
+              type: number
+              example: 2
+            int:
+              type: number
+              example: 7
+            agi:
+              type: number
+              example: 9
+            luk:
+              type: number
+              example: 7
+  parameters:
+    content-type:
+      in: header
+      name: Content-Type
+      schema:
+        type: string
+        example: application/json
+      description: content type
+      required: false
+    name:
+      in: header
+      name: Name
+      schema:
+        type: string
+        example: hahow
+      description: username for auth
+      required: false
+    password:
+      in: header
+      name: Password
+      schema:
+        type: string
+        example: rocks
+      description: password for auth
+      required: false
