@@ -1,0 +1,16 @@
+name: build and push to docker
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push-to-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/build-and-push-to-docker
+        with:
+          docker-username: ${{ secrets.DOCKER_USERNAME }}
+          docker-password: ${{ secrets.DOCKER_PASSWORD }}
+          tag: ${{ github.sha }}

@@ -1,0 +1,34 @@
+name: build and push to docker
+description: build code then push to docker hub
+
+inputs:
+  docker-username:
+    description: username of docker hub
+    required: true
+  docker-password:
+    description: password of docker hub
+    required: true
+  tag:
+    description: tag for the image
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+    - run: yarn install --frozen-lockfile
+      shell: bash
+    - run: yarn run build
+      shell: bash
+    - uses: docker/setup-buildx-action@v3
+    - uses: docker/login-action@v3
+      with:
+        username: ${{ inputs.docker-username }}
+        password: ${{ inputs.docker-password }}
+    - uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: |
+          cwc329/hahow-heroes:latest
+          cwc329/hahow-heroes:${{ inputs.tag }}
