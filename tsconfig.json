@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "module": "CommonJS",
     "moduleResolution": "node",
     "newLine": "LF",

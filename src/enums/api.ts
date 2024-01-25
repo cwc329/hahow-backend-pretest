@@ -1,3 +1,4 @@
 export enum API {
-  HELLO = '/hello',
+  HEROES = '/heroes',
+  HERO   = '/heroes/:heroID',
 }
