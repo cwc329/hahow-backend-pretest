@@ -1,5 +1,3 @@
-import { createServer } from 'node:http';
-
 import express from 'express';
 import morgan from 'morgan';
 
@@ -9,15 +7,14 @@ import { logger } from '#utils';
 
 const { logFormat, port } = config.app;
 
-const app    = express();
-const server = createServer(app);
+const app = express();
 
 app.use(morgan(logFormat));
 
 app.use(heroes);
 
 const main = () => {
-  server.listen(port, () => {
+  app.listen(port, () => {
     logger.info(`ready on http://localhost:${port}`);
   });
 };

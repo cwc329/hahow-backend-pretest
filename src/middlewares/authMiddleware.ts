@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { AuthPayload } from './payloads';
-import { hahowRecruitApi } from '#apiRequests';
 import { logger } from '#utils';
+import { HahowRecruitApi } from '#apiRequests';
 
 export async function authMiddleware(
   req: Request,
@@ -16,11 +16,8 @@ export async function authMiddleware(
       return;
     }
 
-    const authRes = await hahowRecruitApi.auth(`${name}`, `${password}`);
-    const { status } = authRes;
-    if (status === 200) {
-      res.locals.auth = true;
-    }
+    const api = new HahowRecruitApi();
+    res.locals.auth = await api.auth(name, password);
 
     next();
   } catch (err: unknown) {

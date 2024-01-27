@@ -1,5 +1,6 @@
 {
   "watch": ["src/**/*.ts"],
+  "delay": 2000,
   "execMap": {
     "ts": "node --inspect -r dotenv/config -r tsconfig-paths/register -r ts-node/register"
   }

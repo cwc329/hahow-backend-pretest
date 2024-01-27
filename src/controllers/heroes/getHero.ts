@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { hahowRecruitApi } from '#apiRequests';
+import { HahowRecruitApi } from '#apiRequests';
 import { isNumericID, logger } from '#utils';
 
 export async function getHero(req: Request, res: Response): Promise<void> {
@@ -11,13 +11,18 @@ export async function getHero(req: Request, res: Response): Promise<void> {
     }
     const { auth } = res.locals;
 
-    const { data: hero } = await hahowRecruitApi.getHero(heroID);
-    if (auth !== true) {
+    const api = new HahowRecruitApi();
+    const hero = await api.getHero(heroID);
+
+    if (!hero) {
+      res.sendStatus(404);
+      return;
+    }
+    if (!auth) {
       res.status(200).json(hero);
       return;
     }
-
-    const { data: profile } = await hahowRecruitApi.getHeroProfile(heroID);
+    const profile = await api.getHeroProfile(heroID);
 
     res.status(200).json({ ...hero, profile });
   } catch (error: unknown) {

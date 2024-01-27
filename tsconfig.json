@@ -13,6 +13,8 @@
     "strict": true,
     "target": "ES2022",
     "sourceMap": true,
+    "strictNullChecks": true,
+    "isolatedModules": true,
     "paths": {
       "#apiRequests": ["apiRequests"],
       "#apiRequests/*": ["apiRequests/*"],
