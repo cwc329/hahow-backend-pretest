@@ -3,10 +3,10 @@ import { Request } from 'express';
 
 export class AuthPayload {
   @Length(1)
-  public readonly name?: string;
+  public readonly name: string;
 
   @Length(1)
-  public readonly password?: string;
+  public readonly password: string;
 
   private errors: string[];
 

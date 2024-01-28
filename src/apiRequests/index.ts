@@ -1,1 +1,1 @@
-export * as hahowRecruitApi from './hahowRecruit';
+export * from './HahowRecruit';
