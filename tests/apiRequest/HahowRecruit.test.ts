@@ -1,6 +1,6 @@
 import { HahowRecruitApi } from '#apiRequests';
 import { makeHeroApiResponse, makeHeroProfileApiResponse } from '../_doubles';
-import { mockGet, mockPost } from '../../_mocks/axios';
+import { mockGet, mockPost } from '../_mocks/axios';
 
 const api = new HahowRecruitApi();
 
