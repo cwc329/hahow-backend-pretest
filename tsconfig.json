@@ -25,7 +25,7 @@
       "#enums": ["enums"],
       "#enums/*": ["enums/*"],
       "#middlewares": ["middlewares"],
-      "#middlewares/*": ["middlewares/*"],
+      "#middlewares/*": ["middlewares/*/index.ts"],
       "#routes": ["routes"],
       "#routes/*": ["routes/*"],
       "#utils": ["utils"],
