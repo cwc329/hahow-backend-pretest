@@ -4,8 +4,9 @@ module.exports = {
   ...baseConfig,
   moduleNameMapper: {
     ...baseConfig.moduleNameMapper,
-    '^axios$': '<rootDir>/_mocks/axios.ts',
+    '^axios$': '<rootDir>/tests/_mocks/axios.ts',
   },
+  testRegex: '/tests/.*\\.test\\.tsx?$',
   collectCoverageFrom: [
     'src/**/*.ts',
     '!**/node_modules/**',

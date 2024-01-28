@@ -10,7 +10,6 @@ module.exports = {
       { ...swcConfig },
     ],
   },
-  testRegex: '/tests/.*\\.test\\.tsx?$',
   modulePaths: ['<rootDir>/src/'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
   setupFiles: ['<rootDir>/jest-setup-file.ts'],
